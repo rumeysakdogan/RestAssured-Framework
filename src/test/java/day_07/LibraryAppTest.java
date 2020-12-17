@@ -3,9 +3,11 @@ package day_07;
 import io.restassured.http.ContentType;
 import io.restassured.path.json.JsonPath;
 import org.junit.jupiter.api.*;
+import pojo.BookCategory;
 import utility.ConfigurationReader;
 import utility.LibraryUtilities;
 
+import java.util.List;
 import java.util.Map;
 
 import static io.restassured.RestAssured.*;
@@ -80,6 +82,12 @@ class LibraryAppTest {
                         when()
                             .get(" /get_book_categories").prettyPeek()
                             .jsonPath();
+
+        List<BookCategory> allCategories = jp.getList("", BookCategory.class);
+        allCategories.forEach(System.out::println);
+
+        BookCategory num5BC = jp.getObject("[4]", BookCategory.class) ;
+        System.out.println("num5BC = " + num5BC);
     }
 
 }
