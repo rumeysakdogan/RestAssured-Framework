@@ -11,6 +11,8 @@ import static org.hamcrest.MatcherAssert.*;
 import pojo.Region;
 import utility.ConfigurationReader;
 
+import java.util.List;
+
 public class HR_ORDS_Test {
 
     @BeforeAll
@@ -51,11 +53,30 @@ public class HR_ORDS_Test {
                 .log().all()
                 .pathParam("region_id", 3).
                         when()
-                .get("/regions/{region_id}");
+                .get("/regions/{region_id}")
+                .prettyPeek();
 
         JsonPath jp = response.jsonPath();
 
-        Region r3 = jp.getObject("",Region.class);
+        Region r3 = jp.getObject("",Region.class); // storing JsonPath as POJO
+        System.out.println("r3 = " + r3);
+
+        // as method is good if you dont need to pass path means path is "" to store data as POJO
+        Region r4 = response.as(Region.class);
+        System.out.println("r4 = " + r4);
+
+    }
+
+    @DisplayName("Save GET /regions response as List of  POJO")
+    @Test
+    public void testSingleRegionToLisOfPOJO(){
+
+        Response response = get("/regions").prettyPeek();
+
+        JsonPath jp = response.jsonPath();
+
+        List<Region> allRegions = jp.getList("items", Region.class);
+        allRegions.forEach(System.out::println);
 
 
     }
