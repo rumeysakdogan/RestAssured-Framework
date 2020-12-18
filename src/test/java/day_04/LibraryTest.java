@@ -2,24 +2,14 @@ package day_04;
 
 import io.restassured.http.ContentType;
 import org.junit.jupiter.api.*;
+import testbase.Library_TestBase;
+
 import static io.restassured.RestAssured.* ;
 import static org.hamcrest.Matchers.* ;
 
-class LibrayAppTest {
+class LibrayAppTest extends Library_TestBase {
 
     private static String myToken;
-
-    @BeforeAll
-    public static void setUp() {
-        baseURI = "http://library1.cybertekschool.com";
-        basePath = "/rest/v1";
-       // myToken = LibraryUtilities.loginAndGetToken()
-    }
-
-    @AfterAll
-    public static void tearDown() {
-        reset();
-    }
 
     @DisplayName("Testing /login Endpoint")
     @Test

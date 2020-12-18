@@ -4,6 +4,7 @@ import io.restassured.http.ContentType;
 import io.restassured.path.json.JsonPath;
 import org.junit.jupiter.api.*;
 import pojo.BookCategory;
+import testbase.Library_TestBase;
 import utility.ConfigurationReader;
 import utility.LibraryUtilities;
 
@@ -13,22 +14,15 @@ import java.util.Map;
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
 
-class LibraryAppTest {
+class LibraryAppTest extends Library_TestBase {
 
     private static String myToken;
 
-    @BeforeAll
-    public static void setUp() {
-        baseURI = "http://library1.cybertekschool.com";
-        basePath = "/rest/v1";
+    static {
+
         myToken = LibraryUtilities
                 .loginAndGetToken(ConfigurationReader.getProperty("librarian1.username"),
                         ConfigurationReader.getProperty("librarian1.password") );
-    }
-
-    @AfterAll
-    public static void tearDown() {
-        reset();
     }
 
         @DisplayName("Testing GET /dashboard_stats Endpoint")

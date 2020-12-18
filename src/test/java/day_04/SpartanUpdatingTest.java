@@ -2,23 +2,13 @@ package day_04;
 
 import io.restassured.http.ContentType;
 import org.junit.jupiter.api.*;
+import testbase.Spartan_TestBase;
 import utility.ConfigurationReader;
 
 import static io.restassured.RestAssured.* ;
 import static org.hamcrest.Matchers.* ;
 
-public class SpartanUpdatingTest {
-
-    @BeforeAll
-    public static void setUp() {
-        baseURI = ConfigurationReader.getProperty("spartan.base_url");
-        basePath = "/api";
-    }
-
-    @AfterAll
-    public static void tearDown() {
-        reset();
-    }
+public class SpartanUpdatingTest extends Spartan_TestBase {
 
     @DisplayName("Test PUT /api/spartans/{id} with String body")
     @Test

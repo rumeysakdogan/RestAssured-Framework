@@ -1,6 +1,7 @@
 package day_05;
 
 import io.restassured.http.ContentType;
+import testbase.Spartan_TestBase;
 import utility.ConfigurationReader;
 import org.junit.jupiter.api.*;
 import utility.SpartanUtil;
@@ -12,23 +13,16 @@ import static org.hamcrest.Matchers.* ;
 
 @TestMethodOrder(MethodOrderer.DisplayName.class)
 @DisplayName("Spartan App End to End CRUD Happy Path")
-public class Spartan_E2E_HappyPath {
+public class Spartan_E2E_HappyPath extends Spartan_TestBase {
 
     private static Map<String, Object> payloadMap;
     private static int newID;
 
-    // crud operation -- CREATE -- READ -- UPDATE -- DELETE
-    @BeforeAll
-    public static void setUp() {
-        baseURI = "http://54.157.181.196:8000";
-        basePath = "/api";
+    static {
         payloadMap = SpartanUtil.getRandomSpartanRequestPayload();
     }
 
-    @AfterAll
-    public static void tearDown() {
-        reset();
-    }
+    // crud operation -- CREATE -- READ -- UPDATE -- DELETE
 
     @DisplayName("1. Testing POST /api/spartans Endpoint")
     @Test

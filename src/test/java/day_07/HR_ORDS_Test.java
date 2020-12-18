@@ -9,22 +9,12 @@ import static org.hamcrest.Matchers.* ;
 import static org.hamcrest.MatcherAssert.*;
 
 import pojo.Region;
+import testbase.HR_ORDS_TestBase;
 import utility.ConfigurationReader;
 
 import java.util.List;
 
-public class HR_ORDS_Test {
-
-    @BeforeAll
-    public static void setUp() {
-        baseURI = "http://54.90.101.103:1000";
-        basePath = "/ords/hr";
-    }
-
-    @AfterAll
-    public static void tearDown() {
-        reset();
-    }
+public class HR_ORDS_Test extends HR_ORDS_TestBase {
 
     @DisplayName("Testing /regions/{region_id}")
     @Test

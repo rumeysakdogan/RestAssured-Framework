@@ -4,6 +4,7 @@ import io.restassured.http.ContentType;
 import org.junit.jupiter.api.*;
 
 import pojo.Spartan;
+import testbase.Spartan_TestBase;
 import utility.ConfigurationReader;
 import utility.SpartanUtil;
 
@@ -12,19 +13,7 @@ import static org.hamcrest.Matchers.* ;
 import static org.hamcrest.MatcherAssert.*;
 
 
-public class PostWithCustomObject {
-
-    @BeforeAll
-    public static void setUp() {
-        //RestAssured.filters().add(new AllureRestAssured() ) ;
-        baseURI = "http://54.157.181.196:8000";
-        basePath = "/api";
-    }
-
-    @AfterAll
-    public static void tearDown() {
-        reset();
-    }
+public class PostWithCustomObject extends Spartan_TestBase {
 
     @DisplayName("Add 1 Data with POJO as body")
     @Test

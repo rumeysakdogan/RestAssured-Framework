@@ -10,23 +10,13 @@ import static org.hamcrest.MatcherAssert.*;
 
 import pojo.Spartan;
 import pojo.SpartanRead;
+import testbase.Spartan_TestBase;
 import utility.ConfigurationReader;
 
 import java.util.List;
 import java.util.Map;
 
-public class JsonToJavaObject {
-
-    @BeforeAll
-    public static void setUp() {
-        baseURI = ConfigurationReader.getProperty("spartan.base_url");
-        basePath = "/api";
-    }
-
-    @AfterAll
-    public static void tearDown() {
-        reset();
-    }
+public class JsonToJavaObject extends Spartan_TestBase {
 
     @DisplayName("Get 1 Data With Save Response Json as Java Object")
     @Test

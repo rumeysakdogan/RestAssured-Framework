@@ -7,23 +7,13 @@ import static org.hamcrest.Matchers.* ;
 import static org.hamcrest.MatcherAssert.*;
 
 import pojo.Spartan;
+import testbase.Spartan_TestBase;
 import utility.ConfigurationReader;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class PatchOneSpartanTest {
-
-    @BeforeAll
-    public static void setUp() {
-        baseURI = ConfigurationReader.getProperty("spartan.base_url");
-        basePath = "/api";
-    }
-
-    @AfterAll
-    public static void tearDown() {
-        reset();
-    }
+public class PatchOneSpartanTest extends Spartan_TestBase {
 
     @DisplayName("Patching 1 data with Java Object")
     @Test
