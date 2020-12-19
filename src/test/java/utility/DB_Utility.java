@@ -307,6 +307,27 @@ public class DB_Utility {
         return rowMap;
     }
 
+    public static Map<String,String> getFirstRowMap(){
+
+        Map<String,String> rowMap = new LinkedHashMap<>();
+
+        try {
+            rs.absolute(1);
+            ResultSetMetaData rsmd = rs.getMetaData();
+
+            for (int colNum = 1; colNum <= rsmd.getColumnCount(); colNum++) {
+
+                String columnName = rsmd.getColumnLabel(colNum);
+                String cellValue = rs.getString(colNum);
+                rowMap.put(columnName, cellValue);
+            }
+            rs.beforeFirst();
+        }catch (SQLException e){
+            System.out.println("Error while getting row map:" + e.getMessage());
+        }
+        return rowMap;
+    }
+
 
     /**
      * Getting all rowMaps as List of Maps
