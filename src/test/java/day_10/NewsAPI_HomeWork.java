@@ -6,6 +6,8 @@ import org.junit.jupiter.api.*;
 import static io.restassured.RestAssured.* ;
 import static org.hamcrest.Matchers.* ;
 import static org.hamcrest.MatcherAssert.*;
+
+import pojo.ArticlePOJO;
 import utility.ConfigurationReader;
 
 import java.util.List;
@@ -33,10 +35,14 @@ public class NewsAPI_HomeWork {
                                 .queryParam("country","us")
                                 .queryParam("apiKey","a65aa2967a914f62ab216e25381620ea").
                         when()
-                                .get("/top-headlines").prettyPeek()
+                                .get("/top-headlines")
+                                //.prettyPeek()
                                 .jsonPath();
 
          List<String> allAuthors = jp.getList("articles.findAll { it.source.id != null && it.author != null }.author");
             allAuthors.forEach(System.out::println);
+
+            List<ArticlePOJO> articleList = jp.getList("articles.findAll { it.source.id != null && it.author != null }", ArticlePOJO.class);
+            articleList.forEach(System.out::println);
     }
 }

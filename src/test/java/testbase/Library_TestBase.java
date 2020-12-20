@@ -11,7 +11,7 @@ public class Library_TestBase {
 
     @BeforeAll
     public static void setUp() {
-        baseURI = "http://library1.cybertekschool.com";
+        baseURI = ConfigurationReader.getProperty("library1.base.url");
         basePath = "/rest/v1";
     }
 
