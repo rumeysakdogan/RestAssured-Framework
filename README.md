@@ -1,4 +1,4 @@
-# B20 RestAssured Project
+# RestAssured Project
 
 [REST Assured](https://rest-assured.io/) brings the simplicity for Testing and validating REST services in Java. 
 
